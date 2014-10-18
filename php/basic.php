@@ -11,7 +11,7 @@ $csv = new parseCSV();
 
 
 # Parse '_books.csv' using automatic delimiter detection...
-$csv->auto('../routes_br.csv');
+$csv->auto('../routes-br.csv');
 
 # ...or if you know the delimiter, set the delimiter character
 # if its not the default comma...

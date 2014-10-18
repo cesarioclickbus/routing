@@ -11,7 +11,7 @@ function getDistance($origin, $destination, $i) {
 }
 
 $csv = new parseCSV();
-$csv->auto('../routes_br.csv');
+$csv->auto('../routes-br.csv');
 
 //for($i =0; $i < count($csv->data); $i++){
 for($i = 0; $i < count($csv->data); $i++)

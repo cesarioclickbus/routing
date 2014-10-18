@@ -3,7 +3,7 @@
 require_once('../vendor/parsecsv-0.3.2/parsecsv.lib.php');
 
 $csv = new parseCSV();
-$csv->auto('../routes_br.csv');
+$csv->auto('../routes-br.csv');
 
 
 print_r($csv->data[0]);
