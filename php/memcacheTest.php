@@ -1,16 +1,18 @@
 <?php
 
-$memcache = new Memcache;
-$memcache->connect('localhost', 11211) or die ("Could not connect");
+
+$memcache_obj = memcache_connect('localhost', 11211);
+
 
 $key = md5('List 9lessons Demos'); // Unique Words
 $cache_result = array();
-$cache_result = $memcache->get($key); // Memcached object
+$cache_result = memcache_get($memcache_obj, $key);
 
 if($cache_result)
 {
 // Second User Request
 $demos_result=$cache_result;
+echo 'used from cache';
 }
 else
 {
@@ -25,9 +27,7 @@ $demos_result = array(
                     array("d", "e", 6),
                     array("e", "f", 9)
                );
-
-$memcache->set($key, $demos_result, 0, 1200);
-// 1200 Seconds
+memcache_set($memcache_obj, $key, $demos_result, 0, 1200);
 }
 
 // Result
@@ -35,5 +35,12 @@ foreach($demos_result as $row)
 {
 echo '<a href='.$row[0].'>'.$row[1].'</a>';
 }
+
+?>
+
+<?php
+
+
+echo
 
 ?>
