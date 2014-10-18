@@ -19,9 +19,8 @@ for($i = 0; $i < 30; $i++)
     $csv->data[$i][distance] = getDistance($csv->data[$i][origin_place_name],$csv->data[$i][destination_place_name],$i);
     $csv->data[$i][google_api] = 1;
     $csv->save();
+    print_r("saved ".$i."\n");
     if ($i%10 == 0) sleep(3);
   }
-
-
 ?>
 done
