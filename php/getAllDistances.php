@@ -3,7 +3,7 @@
 require_once('../vendor/parsecsv-0.3.2/parsecsv.lib.php');
 
 function getDistance($origin, $destination, $i) {
-  $q = "http://maps.googleapis.com/maps/api/distancematrix/json?origins=".str_replace(" ", "+", $origin)."&destinations=".str_replace(" ", "+",$destination)."&mode=driving&sensor=false";
+  $q = "http://maps.googleapis.com/maps/api/distancematrix/json?origins=".str_replace(" ", "+", $origin)."+Brasil&destinations=".str_replace(" ", "+",$destination)."+Brasil&mode=driving&sensor=false";
   $json = file_get_contents($q);
   $details = json_decode($json, TRUE);
   if ($details[status] == "OVER_QUERY_LIMIT") exit("terminou na linha ".$i);
