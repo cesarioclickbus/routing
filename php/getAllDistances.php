@@ -14,7 +14,7 @@ $csv = new parseCSV();
 $csv->auto('../routes_br.csv');
 
 //for($i =0; $i < count($csv->data); $i++){
-for($i = 0; $i < 30; $i++)
+for($i = 0; $i < count($csv->data); $i++)
   if (is_null($csv->data[$i][google_api]) || $csv->data[$i][google_api]!=1) {
     $csv->data[$i][distance] = getDistance($csv->data[$i][origin_place_name],$csv->data[$i][destination_place_name],$i);
     $csv->data[$i][google_api] = 1;
