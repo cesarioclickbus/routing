@@ -6,7 +6,7 @@ $memcache_obj = memcache_connect('localhost', 11211);
 
 //read vertices memcash
 
-$vertices = memcache_get($memcache_obj, $key);
+$vertices = memcache_get($memcache_obj, 'vertices');
 
 foreach ($vertices as $vertex) {
   print_r($vertex." ");

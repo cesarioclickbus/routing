@@ -26,7 +26,7 @@ $vertices = array_unique($vertices);
 memcache_set($memcache_obj, 'vertices', $vertices, 0, 1200);
 
 foreach ($vertices as $vertex) {
-  mcache_set($memcache_obj, 'neighbours_'.$vertex, $neighbours[$vertex], 0, 1200);
+  memcache_set($memcache_obj, 'neighbours_'.$vertex, $neighbours[$vertex], 0, 1200);
 }
 
 ?>
