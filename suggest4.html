@@ -1,0 +1,17 @@
+<!doctype html>
+<html ng-app="plunker">
+  <head>
+    <script src="vendor/angular/angular.js"></script>
+    <script src="vendor/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
+    <script src="js/example.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+	<meta charset="UTF-8">
+  </head>
+  <body>
+	<H1> Roteirização ClickBus </H1>
+    <div class='container-fluid' ng-controller="TypeaheadCtrl">
+        Origem <input type="text" ng-model="origin" typeahead="suggestion for suggestion in cities($viewValue)">
+		<pre>Model: {{result}}</pre>
+    </div>
+  </body>
+</html>

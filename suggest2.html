@@ -1,0 +1,27 @@
+<!Doctype html>
+<html ng-app>
+<head>
+<script type="text/javascript" src="vendor/angular/angular.min.js"></script>
+<script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+    function FruitsController($scope){
+        $scope.fruits=['apple','mango','banana','strawberry','pineapple','pina colada','raspberry','cherry','peach','pear','apricot'];
+        $scope.toggleGuess=function(){
+            if($scope.query=='') $('p').hide();
+            else $('p').show();    
+        }
+    }
+</script>
+<style type="text/css">
+    p{background-color: #ff0; width:10%; padding:5px; margin:1px; display:none;}
+</style>
+</head>
+<body>
+<div ng-controller="FruitsController">
+    Start typing the Fruit name to get possible guesses :<br />
+    <input type="text" ng-model="query" ng-change="toggleGuess();">
+    <p ng-repeat="fruit in fruits | filter:query">{{fruit}}</p>
+     
+</div>
+</body>
+</html>
