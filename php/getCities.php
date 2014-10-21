@@ -1,6 +1,7 @@
 <?php
 
-$cities = array("Sao Paulo","Rio de Janeiro", "Sao Jose", "Santos", "Buzios", "Santa Fe");
+$memcache_obj = memcache_connect('localhost', 11211);
+$cities = memcache_get($memcache_obj, 'cities');
 
 if ($_GET['q'] == null)
 	echo json_encode($cities);

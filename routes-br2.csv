@@ -1,0 +1,11 @@
+origin_place_id,origin_place_name,destination_place_id,destination_place_name,distance,google_api
+1,"a",2,"b",7,1
+1,"a",3,"c",9,1
+1,"a",6,"f",14,1
+2,"b",3,"c",10,1
+2,"b",4,"d",15,1
+3,"c",4,"d",11,1
+3,"c",6,"f",2,1
+4,"d",5,"e",6,1
+5,"e",6,"f",9,1
+1,"a",5,"e",90,1

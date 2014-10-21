@@ -1,28 +1,11 @@
 <?php
-function cost($graph_array, $origin, $dest) {
-	foreach ($graph_array as $edge) 
-		if ($edge[0] == $origin && $edge[1] == $dest) 
-			return $edge[2];
-	return 0;
-}
 
-function dijkstra($graph_array, $origin, $dest, $maxDist) {
+function dijkstra($origin, $dest, $maxDist) {
 
-	$cityFromId["a"] = "Sao Paulo";
-	$cityFromId["b"] = "Rio de Janeiro";
-	$cityFromId["c"] = "Sao Jose";
-	$cityFromId["d"] = "Santos";
-	$cityFromId["e"] = "Buzios";
-	$cityFromId["f"] = "Santa Fe";
+	$memcache_obj = memcache_connect('localhost', 11211);
 
-
-    $vertices = array();
-    $neighbours = array();
-    foreach ($graph_array as $edge) {
-        array_push($vertices, $edge[0], $edge[1]);
-        $neighbours[$edge[0]][] = array("end" => $edge[1], "cost" => $edge[2]);
-    }
-    $vertices = array_unique($vertices);
+    $vertices = memcache_get($memcache_obj, 'vertices');	
+    $cityFromId = memcache_get($memcache_obj, 'cityFromId');
 
     foreach ($vertices as $v) {
         $cost[$v] = INF;
@@ -50,9 +33,11 @@ function dijkstra($graph_array, $origin, $dest, $maxDist) {
         if ($min == INF or $u == $dest) {
             break;
         }
+		
+		$neighbours_u = memcache_get($memcache_obj, 'neighbours_'.$u);
 
-        if (isset($neighbours[$u])) {
-            foreach ($neighbours[$u] as $arr) {
+        if (isset($neighbours_u)) {
+            foreach ($neighbours_u as $arr) {
                 $alt = $cost[$u] + $arr["cost"];
                 if ($alt < $cost[$arr["end"]]) {
                     $cost[$arr["end"]] = $alt;
@@ -73,7 +58,7 @@ function dijkstra($graph_array, $origin, $dest, $maxDist) {
 									"originName" => $cityFromId[$previous[$u]],
 									"destId" => $u,
 									"destName" => $cityFromId[$u],
-									"cost" =>cost($graph_array,$previous[$u],$u))
+									"cost" =>memcache_get($memcache_obj,'cost_'.$previous[$u].'_'.$u)
 									);
         $u = $previous[$u];
     }
@@ -93,6 +78,6 @@ $graph_array = array(
 					array("a", "e", 90)
                );
 
-$path = dijkstra($graph_array, $_GET['originId'], $_GET['destId'],$_GET['maxDist']);
+$path = dijkstra($_GET['originId'], $_GET['destId'],$_GET['maxDist']);
 
 echo json_encode($path);
