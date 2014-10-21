@@ -14,6 +14,7 @@ memcache_flush($memcache_obj);
 $vertices = array();
 $neighbours = array();
 $cityFromId  = array();
+$idFromCity  = array();
 $cities = array();
 
 //populate arrays
@@ -27,6 +28,9 @@ for($i = 0; $i < count($csv->data); $i++)
 	
 	if (!isset($cityFromId[$csv->data[$i]['origin_place_id']])) $cityFromId[$csv->data[$i]['origin_place_id']] = $csv->data[$i]['origin_place_name'];
 	if (!isset($cityFromId[$csv->data[$i]['destination_place_id']])) $cityFromId[$csv->data[$i]['destination_place_id']] = $csv->data[$i]['destination_place_name'];
+	if (!isset($idFromCity[$csv->data[$i]['origin_place_name']])) $cityFromId[$csv->data[$i]['origin_place_name']] = $csv->data[$i]['origin_place_id'];
+	if (!isset($idFromCity[$csv->data[$i]['destination_place_name']])) $cityFromId[$csv->data[$i]['destination_place_name']] = $csv->data[$i]['destination_place_id'];
+
 	 
 }
 $vertices = array_unique($vertices);
@@ -36,6 +40,7 @@ $cities = array_unique($cities);
 memcache_set($memcache_obj, 'vertices', $vertices, 0, 0);
 memcache_set($memcache_obj, 'cities', $cities, 0, 0);
 memcache_set($memcache_obj, 'cityFromId', $cityFromId, 0, 0);
+memcache_set($memcache_obj, 'idFromCity', $idFromCity, 0, 0);
 
 foreach ($vertices as $vertex) {
   memcache_set($memcache_obj, 'neighbours_'.$vertex, $neighbours[$vertex], 0, 0);
