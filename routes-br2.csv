@@ -1,11 +1,11 @@
 origin_place_id,origin_place_name,destination_place_id,destination_place_name,distance,google_api
-1,"SaoPaulo",2,"Santos",7,1
-1,"SaoPaulo",3,"Fortaleza",9,1
-1,"SaoPaulo",6,"Floripa",14,1
+1,"Sao Paulo",2,"Santos",7,1
+1,"Sao Paulo",3,"Fortaleza",9,1
+1,"Sao Paulo",6,"Floripa",14,1
 2,"Santos",3,"Fortaleza",10,1
 2,"Santos",4,"Rio",15,1
 3,"Fortaleza",4,"Rio",11,1
 3,"Fortaleza",6,"Floripa",2,1
 4,"Rio",5,"Minas",6,1
 5,"Minas",6,"Floripa",9,1
-1,"SaoPaulo",5,"Minas",90,1
+1,"Sao Paulo",5,"Minas",90,1
