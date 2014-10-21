@@ -37,7 +37,7 @@ function dijkstra($origin, $dest, $maxDist) {
         }
 		
 		$neighbours[$u] = memcache_get($memcache_obj, 'neighbours_'.trim($u));
-		print_r('neighbours_'.trim($u).':'.$neighbours[$u]);
+		//print_r('neighbours_'.trim($u).':'.$neighbours[$u]);
 		
         if (isset($neighbours[$u])) {
             foreach ($neighbours[$u] as $arr) {
@@ -81,6 +81,6 @@ $graph_array = array(
 					array("a", "e", 90)
                );
 
-$path = dijkstra($_GET['originId'], $_GET['destId'],$_GET['maxDist']);
+$path = dijkstra(trim($_GET['originId']), trim($_GET['destId']), $_GET['maxDist']);
 
 echo json_encode($path);
