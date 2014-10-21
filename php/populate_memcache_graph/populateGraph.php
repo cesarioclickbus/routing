@@ -34,7 +34,7 @@ $cities = array_unique($cities);
 
 //populate memcash
 memcache_set($memcache_obj, 'vertices', $vertices, 0, 0);
-memcache_set($memcache_obj, 'cities', $vertices, 0, 0);
+memcache_set($memcache_obj, 'cities', $cities, 0, 0);
 memcache_set($memcache_obj, 'cityFromId', $cityFromId, 0, 0);
 
 foreach ($vertices as $vertex) {
