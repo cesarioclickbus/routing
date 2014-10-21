@@ -1,6 +1,6 @@
 <?php
 
-require_once('/vendor/parsecsv-0.3.2/parsecsv.lib.php');
+require_once('../../vendor/parsecsv-0.3.2/parsecsv.lib.php');
 
 $memcache_obj = memcache_connect('localhost', 11211);
 

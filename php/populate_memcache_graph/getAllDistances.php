@@ -1,6 +1,6 @@
 <?php
 
-require_once('/vendor/parsecsv-0.3.2/parsecsv.lib.php');
+require_once('../../vendor/parsecsv-0.3.2/parsecsv.lib.php');
 
 function getDistance($origin, $destination, $i) {
   $q = "http://maps.googleapis.com/maps/api/distancematrix/json?origins=".str_replace(" ", "+", $origin)."+Brasil&destinations=".str_replace(" ", "+",$destination)."+Brasil&mode=driving&sensor=false";
