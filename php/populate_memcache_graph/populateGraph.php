@@ -3,7 +3,7 @@
 require_once('../../vendor/parsecsv-0.3.2/parsecsv.lib.php');
 
 $csv = new parseCSV();
-$csv->auto('../../routes-br.csv');
+$csv->auto('../../routes-br2.csv');
 
 $memcache_obj = memcache_connect('localhost', 11211);
 
@@ -44,7 +44,6 @@ memcache_set($memcache_obj, 'cityFromId', $cityFromId, 0, 0);
 memcache_set($memcache_obj, 'idFromCity', $idFromCity, 0, 0);
 
 foreach ($vertices as $vertex) {
-  if (isset($neighbours[$vertex]))
 	memcache_set($memcache_obj, 'neighbours_'.$vertex, $neighbours[$vertex], 0, 0);
 }
 
