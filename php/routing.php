@@ -36,8 +36,8 @@ function dijkstra($origin, $dest, $maxDist) {
             break;
         }
 		
-		$neighbours[$u] = memcache_get($memcache_obj, 'neighbours_'.$u);
-		print_r('neighbours_'.$u.':'.$neighbours[$u]);
+		$neighbours[$u] = memcache_get($memcache_obj, 'neighbours_'.trim($u));
+		print_r('neighbours_'.trim($u).':'.$neighbours[$u]);
 		
         if (isset($neighbours[$u])) {
             foreach ($neighbours[$u] as $arr) {

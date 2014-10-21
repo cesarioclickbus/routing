@@ -44,7 +44,7 @@ memcache_set($memcache_obj, 'cityFromId', $cityFromId, 0, 0);
 memcache_set($memcache_obj, 'idFromCity', $idFromCity, 0, 0);
 
 foreach ($vertices as $vertex) {
-	memcache_set($memcache_obj, 'neighbours_'.$vertex, $neighbours[$vertex], 0, 0);
+	memcache_set($memcache_obj, 'neighbours_'.trim($vertex), $neighbours[$vertex], 0, 0);
 }
 
 ?>
