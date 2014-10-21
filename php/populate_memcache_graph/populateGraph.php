@@ -3,7 +3,7 @@
 require_once('../../vendor/parsecsv-0.3.2/parsecsv.lib.php');
 
 $csv = new parseCSV();
-$csv->auto('../../routes-br2.csv');
+$csv->auto('../../routes-br.csv');
 
 $memcache_obj = memcache_connect('localhost', 11211);
 

@@ -5,7 +5,7 @@ app.controller('TypeaheadCtrl', function ($scope, $http, limitToFilter) {
 
   $scope.cities = function(cityName) {
     return $http.get("../php/getCities.php?q="+cityName).then(function(response){
-      return limitToFilter(response.data, 5);
+      return limitToFilter(response.data, 15);
     });
   };  
   $scope.idByCity = function(cityName,id) {
