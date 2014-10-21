@@ -18,8 +18,7 @@ $idFromCity  = array();
 $cities = array();
 
 //populate arrays
-for($i = 0; $i < count($csv->data); $i++)
-  if ($csv->data[$i]['google_api'] == 1 && $csv->data[$i]['distance'] > 0) {
+for($i = 0; $i < count($csv->data); $i++){
   
 	$origin_place_id = trim($csv->data[$i]['origin_place_id']);
 	$destination_place_id = trim($csv->data[$i]['destination_place_id']);
@@ -31,8 +30,12 @@ for($i = 0; $i < count($csv->data); $i++)
 	if (!in_array($origin_place_name, $cities)) array_push($cities, $origin_place_name);
 	if (!in_array($destination_place_name, $cities)) array_push($cities, $destination_place_name);
 	
-    $neighbours[$origin_place_id][] = array("end" => $destination_place_id, "cost" => $csv->data[$i]['distance']);  
-	memcache_set($memcache_obj, 'cost_'.$origin_place_id.'_'.$destination_place_id, $csv->data[$i]['distance'], 0, 0);
+	
+	if (!isset($csv->data[$i]['distance'])) $cost = 1;
+		else $cost = $csv->data[$i]['distance'];
+  
+    $neighbours[$origin_place_id][] = array("end" => $destination_place_id, "cost" => $cost);  
+	memcache_set($memcache_obj, 'cost_'.$origin_place_id.'_'.$destination_place_id, $cost, 0, 0);
 	
 	if (!isset($cityFromId[$origin_place_id]) || is_null($cityFromId[$origin_place_id])) $cityFromId[$origin_place_id] = $origin_place_name;
 	if (!isset($cityFromId[$destination_place_id]) || is_null($cityFromId[$destination_place_id])) $cityFromId[$destination_place_id] = $destination_place_name;
