@@ -2,6 +2,8 @@
 
 function dijkstra($origin, $dest, $maxDist) {
 
+	$neighbours = array();
+	
 	$memcache_obj = memcache_connect('localhost', 11211);
 
     $vertices = memcache_get($memcache_obj, 'vertices');	
@@ -34,10 +36,10 @@ function dijkstra($origin, $dest, $maxDist) {
             break;
         }
 		
-		$neighbours_u = memcache_get($memcache_obj, 'neighbours_'.$u);
-
-        if (isset($neighbours_u)) {
-            foreach ($neighbours_u as $arr) {
+		$neighbours[$u] = memcache_get($memcache_obj, 'neighbours_'.$u);
+		
+        if (isset($neighbours[$u])) {
+            foreach ($neighbours[$u] as $arr) {
                 $alt = $cost[$u] + $arr["cost"];
                 if ($alt < $cost[$arr["end"]]) {
                     $cost[$arr["end"]] = $alt;
