@@ -29,19 +29,10 @@ for($i = 0; $i < count($csv->data); $i++)
     $neighbours[$csv->data[$i]['origin_place_id']][] = array("end" => $csv->data[$i]['destination_place_id'], "cost" => $csv->data[$i]['distance']);  
 	memcache_set($memcache_obj, 'cost_'.$csv->data[$i]['origin_place_id'].'_'.$csv->data[$i]['destination_place_id'], $csv->data[$i]['distance'], 0, 0);
 	
-	//if (!isset($cityFromId[$csv->data[$i]['origin_place_id']])) $cityFromId[$csv->data[$i]['origin_place_id']] = $csv->data[$i]['origin_place_name'];
-	//if (!isset($cityFromId[$csv->data[$i]['destination_place_id']])) $cityFromId[$csv->data[$i]['destination_place_id']] = $csv->data[$i]['destination_place_name'];
-	//if (!isset($idFromCity[$csv->data[$i]['origin_place_name']])) $idFromCity[$csv->data[$i]['origin_place_name']] = $csv->data[$i]['origin_place_id'];
-	//if (!isset($idFromCity[$csv->data[$i]['destination_place_name']])) $idFromCity[$csv->data[$i]['destination_place_name']] = $csv->data[$i]['destination_place_id'];
-
-	if (!in_array(array($csv->data[$i]['origin_place_id'] => $csv->data[$i]['origin_place_name']), $cityFromId)) array_push($cityFromId, array($csv->data[$i]['origin_place_id'] => $csv->data[$i]['origin_place_name']));
-	if (!in_array(array($csv->data[$i]['destination_place_id'] => $csv->data[$i]['destination_place_name']), $cityFromId)) array_push($cityFromId, array($csv->data[$i]['destination_place_id'] => $csv->data[$i]['destination_place_name']));
-	
-	if (!in_array(array($csv->data[$i]['origin_place_name'] => $csv->data[$i]['origin_place_id']), $idFromCity)) array_push($idFromCity, array($csv->data[$i]['origin_place_name'] => $csv->data[$i]['origin_place_id']));
-	if (!in_array(array($csv->data[$i]['destination_place_name'] => $csv->data[$i]['destination_place_id']), $idFromCity)) array_push($idFromCity, array($csv->data[$i]['destination_place_name'] => $csv->data[$i]['destination_place_id']));
-	
-	
-	 
+	if (is_null($cityFromId[$csv->data[$i]['origin_place_id']])) $cityFromId[$csv->data[$i]['origin_place_id']] = $csv->data[$i]['origin_place_name'];
+	if (is_null($cityFromId[$csv->data[$i]['destination_place_id']])) $cityFromId[$csv->data[$i]['destination_place_id']] = $csv->data[$i]['destination_place_name'];
+	if (is_null($idFromCity[$csv->data[$i]['origin_place_name']])) $idFromCity[$csv->data[$i]['origin_place_name']] = $csv->data[$i]['origin_place_id'];
+	if (is_null($idFromCity[$csv->data[$i]['destination_place_name']])) $idFromCity[$csv->data[$i]['destination_place_name']] = $csv->data[$i]['destination_place_id'];
 }
 
 //populate memcash
