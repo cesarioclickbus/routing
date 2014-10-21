@@ -7,6 +7,15 @@ function cost($graph_array, $origin, $dest) {
 }
 
 function dijkstra($graph_array, $origin, $dest, $maxDist) {
+
+	$cityFromId["a"] = "Sao Paulo";
+	$cityFromId["b"] = "Rio de Janeiro";
+	$cityFromId["c"] = "Sao Jose";
+	$cityFromId["d"] = "Santos";
+	$cityFromId["e"] = "Buzios";
+	$cityFromId["f"] = "Santa Fe";
+
+
     $vertices = array();
     $neighbours = array();
     foreach ($graph_array as $edge) {
@@ -60,7 +69,12 @@ function dijkstra($graph_array, $origin, $dest, $maxDist) {
     $path = array();
     $u = $dest;
     while (isset($previous[$u])) {
-        array_unshift($path, array($previous[$u],$u,cost($graph_array,$previous[$u],$u)));
+        array_unshift($path, array( "oridinId" => $previous[$u],
+									"originName" => $cityFromId[$previous[$u]],
+									"destId" => $u,
+									"destName" => $cityFromId[$u],
+									"cost" =>cost($graph_array,$previous[$u],$u))
+									);
         $u = $previous[$u];
     }
     return $path;
