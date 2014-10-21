@@ -1,9 +1,9 @@
 <?php
 
-require_once('../vendor/parsecsv-0.3.2/parsecsv.lib.php');
+require_once('../../vendor/parsecsv-0.3.2/parsecsv.lib.php');
 
 $csv = new parseCSV();
-$csv->auto('../routes-br.csv');
+$csv->auto('../../routes-br.csv');
 
 $memcache_obj = memcache_connect('localhost', 11211);
 
@@ -23,10 +23,10 @@ for($i = 0; $i < count($csv->data); $i++)
 $vertices = array_unique($vertices);
 
 //populate memcash
-memcache_set($memcache_obj, 'vertices', $vertices, 0, 1200);
+memcache_set($memcache_obj, 'vertices', $vertices, 0, 0);
 
 foreach ($vertices as $vertex) {
-  memcache_set($memcache_obj, 'neighbours_'.$vertex, $neighbours[$vertex], 0, 1200);
+  memcache_set($memcache_obj, 'neighbours_'.$vertex, $neighbours[$vertex], 0, 0);
 }
 
 ?>
