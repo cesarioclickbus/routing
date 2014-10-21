@@ -37,10 +37,10 @@ print_r("\n");
 $neighbours = array();
 
 foreach ($vertices as $vertex) {
-  print_r("-> ".$vertex."\n");
+  print_r("Vertice ".$vertex."\n");
   $neighbours[$vertex] = memcache_get($memcache_obj, 'neighbours_'.$vertex);
   foreach ($neighbours[$vertex] as $arr) {
-    print_r($vertex."->".$arr["end"].":".$arr["cost"]." == " + memcache_get($memcache_obj,'cost_'.$vertex.'_'.$arr["end"]) + "\n");
+    print_r($vertex."->".$arr["end"].":".$arr["cost"]." == ".memcache_get($memcache_obj,'cost_'.$vertex.'_'.$arr["end"])."\n");
   }
 }
 
