@@ -38,6 +38,7 @@ foreach ($vertices as $vertex) {
   print_r("Vertice ".$vertex);
   echo "\n";
   $neighbours[$vertex] = memcache_get($memcache_obj, 'neighbours_'.$vertex);
+  print_r('neighbours_'.$vertex.':'.$neighbours[$vertex]);
   foreach ($neighbours[$vertex] as $arr) {
     print_r($vertex."->".$arr["end"].":".$arr["cost"]." == ".memcache_get($memcache_obj,'cost_'.$vertex.'_'.$arr["end"])."\n");
   }
