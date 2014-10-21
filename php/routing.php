@@ -58,8 +58,8 @@ function dijkstra($origin, $dest, $maxDist) {
 									"originName" => $cityFromId[$previous[$u]],
 									"destId" => $u,
 									"destName" => $cityFromId[$u],
-									"cost" =>memcache_get($memcache_obj,'cost_'.$previous[$u].'_'.$u)
-									);
+									"cost" => memcache_get($memcache_obj,'cost_'.$previous[$u].'_'.$u)
+									));
         $u = $previous[$u];
     }
     return $path;
