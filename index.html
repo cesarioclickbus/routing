@@ -10,8 +10,8 @@
   <body>
 	<H1> Roteirização ClickBus </H1>
     <div class='container-fluid' ng-controller="TypeaheadCtrl">
-        Origem <input type="text" ng-model="origin" typeahead="suggestion for suggestion in cities($viewValue)" ng-change="getOriginId(origin)"> code: {{originId}}<br/>
-		Destino <input type="text" ng-model="dest" typeahead="suggestion for suggestion in cities($viewValue)" ng-change="getDestId(dest)"> code: {{destId}}<br/>
+        Origem <input type="text" ng-model="origin" typeahead="suggestion for suggestion in cities($viewValue)" ng-blur="getOriginId(origin)"> code: {{originId}}<br/>
+		Destino <input type="text" ng-model="dest" typeahead="suggestion for suggestion in cities($viewValue)" ng-blur="getDestId(dest)"> code: {{destId}}<br/>
 		# Max de viagens <br/>
 		<input type="radio" ng-model="maxDist" value="1">1
 		<input type="radio" ng-model="maxDist" value="2" ng-checked="true">2
