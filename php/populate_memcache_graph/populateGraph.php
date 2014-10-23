@@ -3,7 +3,7 @@
 require_once('../../vendor/parsecsv-0.3.2/parsecsv.lib.php');
 
 $csv = new parseCSV();
-$csv->auto('../../routes-br2.csv');
+$csv->auto('../../routes-br.csv');
 
 $memcache_obj = memcache_connect('localhost', 11211);
 
@@ -31,8 +31,8 @@ for($i = 0; $i < count($csv->data); $i++){
 	if (!in_array($destination_place_name, $cities)) array_push($cities, $destination_place_name);
 	
 	
-	if (!isset($csv->data[$i]['distance'])) $cost = 1;
-		else $cost = $csv->data[$i]['distance'];
+	if (!isset($csv->data[$i]['media_hora'])) $cost = 9999;
+		else $cost = $csv->data[$i]['media_hora'];
   
     $neighbours[$origin_place_id][] = array("end" => $destination_place_id, "cost" => $cost);  
 	memcache_set($memcache_obj, 'cost_'.$origin_place_id.'_'.$destination_place_id, $cost, 0, 0);
